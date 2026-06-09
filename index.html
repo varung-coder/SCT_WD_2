@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcWorks - Premium Math Calculator</title>
+    
+    <!-- SEO and Meta tags -->
+    <meta name="description" content="CalcWorks: A premium, glassmorphism-styled modern calculator web application with advanced features like history tracking and keyboard support.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Math Themed Background -->
+    <div class="math-background" id="math-background">
+        <!-- Layer 1: Perspective coordinate grid -->
+        <div class="grid-overlay"></div>
+
+        <!-- Layer 2: Animated sine wave canvas -->
+        <canvas id="wave-canvas"></canvas>
+
+        <!-- Layer 3: 3D rotating geometric shapes (CSS 3D transforms) -->
+        <div class="shapes-layer" id="shapes-layer">
+            <div class="shape-3d cube-wrap cube-1">
+                <div class="cube">
+                    <div class="face front"></div><div class="face back"></div>
+                    <div class="face left"></div><div class="face right"></div>
+                    <div class="face top"></div><div class="face bottom"></div>
+                </div>
+            </div>
+            <div class="shape-3d cube-wrap cube-2">
+                <div class="cube">
+                    <div class="face front"></div><div class="face back"></div>
+                    <div class="face left"></div><div class="face right"></div>
+                    <div class="face top"></div><div class="face bottom"></div>
+                </div>
+            </div>
+            <div class="shape-3d cube-wrap cube-3">
+                <div class="cube">
+                    <div class="face front"></div><div class="face back"></div>
+                    <div class="face left"></div><div class="face right"></div>
+                    <div class="face top"></div><div class="face bottom"></div>
+                </div>
+            </div>
+            <div class="shape-3d octahedron-wrap octa-1">
+                <div class="octahedron">
+                    <div class="tri tri-1"></div><div class="tri tri-2"></div>
+                    <div class="tri tri-3"></div><div class="tri tri-4"></div>
+                    <div class="tri tri-5"></div><div class="tri tri-6"></div>
+                    <div class="tri tri-7"></div><div class="tri tri-8"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Layer 4: Floating math formulas (injected by JS) -->
+        <div class="formulas-layer" id="formulas-layer"></div>
+    </div>
+
+    <main class="app-container">
+        <!-- Main Calculator UI -->
+        <div class="calculator glass-panel">
+            <header class="calc-header">
+                <div></div>
+                <div class="brand">CalcWorks</div>
+                <button id="history-toggle" class="icon-btn" aria-label="Toggle History">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </button>
+            </header>
+
+            <div class="display-container">
+                <div class="previous-operand" id="previous-operand"></div>
+                <div class="current-operand" id="current-operand">0</div>
+            </div>
+
+            <div class="keypad">
+                <!-- Row 1 -->
+                <button class="btn btn-action" data-key="Escape" data-action="clear">AC</button>
+                <button class="btn btn-action" data-key="Backspace" data-action="delete"><i class="fa-solid fa-delete-left"></i></button>
+                <button class="btn btn-action" data-key="%" data-action="percentage">%</button>
+                <button class="btn btn-operator" data-key="/" data-operator="÷">÷</button>
+
+                <!-- Row 2 -->
+                <button class="btn btn-number" data-key="7" data-number="7">7</button>
+                <button class="btn btn-number" data-key="8" data-number="8">8</button>
+                <button class="btn btn-number" data-key="9" data-number="9">9</button>
+                <button class="btn btn-operator" data-key="*" data-operator="×">×</button>
+
+                <!-- Row 3 -->
+                <button class="btn btn-number" data-key="4" data-number="4">4</button>
+                <button class="btn btn-number" data-key="5" data-number="5">5</button>
+                <button class="btn btn-number" data-key="6" data-number="6">6</button>
+                <button class="btn btn-operator" data-key="-" data-operator="−">−</button>
+
+                <!-- Row 4 -->
+                <button class="btn btn-number" data-key="1" data-number="1">1</button>
+                <button class="btn btn-number" data-key="2" data-number="2">2</button>
+                <button class="btn btn-number" data-key="3" data-number="3">3</button>
+                <button class="btn btn-operator" data-key="+" data-operator="+">+</button>
+
+                <!-- Row 5 -->
+                <button class="btn btn-action" data-key="!" data-action="toggle-sign">+/-</button>
+                <button class="btn btn-number" data-key="0" data-number="0">0</button>
+                <button class="btn btn-number" data-key="." data-number=".">.</button>
+                <button class="btn btn-equals" data-key="Enter" data-action="calculate">=</button>
+            </div>
+        </div>
+
+        <!-- History Panel -->
+        <aside class="history-panel glass-panel hidden" id="history-panel">
+            <div class="history-header">
+                <h3>History</h3>
+                <button id="clear-history" class="icon-btn" aria-label="Clear History" title="Clear History">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+            <div class="history-list" id="history-list">
+                <div class="empty-history-msg">No history yet</div>
+            </div>
+        </aside>
+
+        <!-- Toast Notification (for copy to clipboard) -->
+        <div id="toast" class="toast">Copied to clipboard!</div>
+    </main>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
