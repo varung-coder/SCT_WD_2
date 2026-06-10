@@ -1,4 +1,4 @@
-# SCT_WD_2 Calculator Web Application
+# CalcWorks : A modern Calculator Web Application
 
 ![Calculator Preview](https://img.shields.io/badge/Project-CalcWorks-blue?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
@@ -7,8 +7,8 @@
 **CalcWorks** is a premium, modern, and mathematically-inspired web calculator built using purely vanilla web technologies. It features a stunning glassmorphism design language set against a dynamic, layered 3D mathematical background. Designed to be robust and elegant, it completely bypasses the unsafe `eval()` function in favor of a safe, custom-built step-by-step arithmetic parsing logic.
 
 ## 🚀 Live Demo
-Experience the calculator live here:  
-**👉 [Live Preview](https://varung-coder.github.io/SCT_WD_2/)**
+Experience the calculator live here:   https://varung-coder.github.io/SCT_WD_2/
+
 
 ## ✨ Key Features
 - **Eval-Free Logic**: A completely safe, custom-built calculation engine that accurately handles edge cases like division by zero and multiple decimals.
